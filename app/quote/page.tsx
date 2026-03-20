@@ -122,7 +122,7 @@ export default function QuotePage() {
               사무용 · FHD 고사양 게이밍 · 전문가 작업용<br />
               목적과 예산에 맞는 최적화된 구성을 제안합니다<br />
               가격은 인터넷 최저가 합산<br />
-              조립비 4~5만원 및 택배비 별도
+              조립비 44,000원부터 · 택배비 별도
             </p>
             <div className="flex items-center gap-4">
               <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg,var(--accent),transparent)' }} />
