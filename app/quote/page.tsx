@@ -6,7 +6,7 @@ import { Footer } from '@/app/page'
 
 export const metadata: Metadata = {
   title: '255COM 추천 견적',
-  description: '2026년 3월 최신 견적 · 사무용 / FHD 고사양 게이밍 / 전문가 작업용',
+  description: '2026년 3월 견적 · 사무용 / 고사양 게이밍 / 전문가 작업용',
 }
 
 const BUILDS = [
@@ -46,7 +46,7 @@ const BUILDS = [
     priceBg: 'rgba(110,147,181,.1)', priceBorder: 'rgba(110,147,181,.22)',
     partsBorder: 'rgba(110,147,181,.15)',
     price: '2,286,490',
-    desc: '주식 · 포토샵 · 라이트룸 · FHD 풀옵 게이밍\n대부분의 가정용도를 한 번에 커버',
+    desc: '주식 · 포토샵 · 라이트룸 · 풀옵 게이밍\n대부분의 가정용도를 한 번에 커버',
     parts: [
       { k:'CPU',  v:'AMD 라이젠5 9600X (Granite Ridge)',       s:'325,910원 / 프레임 방어↑ 7500X3D: 378,670원' },
       { k:'쿨러', v:'DEEPCOOL AG400 G2 (싱글타워 공랭)',         s:'22,890원 / PCCOOLER PALADIN 400: 30,020원' },
