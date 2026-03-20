@@ -99,7 +99,7 @@ export default function QuotePage() {
         <div className="quote-hero">
           <div className="quote-hero-glow" />
           <div className="relative z-10 max-w-4xl mx-auto">
-            <p className="t-eyebrow mb-4">2026년 3월 최신 견적 · 인터넷 최저가 기준</p>
+            <p className="t-eyebrow mb-4">2026년 3월 견적 · 인터넷 최저가 기준</p>
             <h1 className="quote-h1">추천 견적</h1>
             <p className="quote-sub">THREE BUILDS</p>
             <p className="quote-desc">
@@ -120,7 +120,7 @@ export default function QuotePage() {
 
         {/* 섹션 라벨 */}
         <div className="px-6 max-w-3xl mx-auto mb-5">
-          <p className="parts-label">견적 구성 · 2026 Mar</p>
+          <p className="parts-label">DETAILI BUILDS · 2026 Mar</p>
         </div>
 
         {/* CARDS */}
@@ -203,10 +203,6 @@ export default function QuotePage() {
               위 구성은 2026년 3월 인터넷 최저가 기준입니다.<br />
               중고PC 견적 · 예산과 용도 맞춤 견적은 직접 문의해 주세요.<br /> 
             </p>
-            <a href="http://pf.kakao.com/_xeDNxhX" target="_blank" rel="noopener"
-              className="btn btn-primary">
-              문의하기
-            </a>
           </div>
         </div>
 
