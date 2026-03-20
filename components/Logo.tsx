@@ -1,5 +1,5 @@
-import React from 'react'
 'use client'
+import React from 'react'
 
 interface LogoProps {
   size?: number   // font-size (px) 기준, 기본 19
