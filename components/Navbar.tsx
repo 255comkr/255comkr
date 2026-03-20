@@ -82,7 +82,7 @@ export default function Navbar() {
       {menuOpen && (
         <div className="fixed left-0 right-0 z-40 flex flex-col px-6 py-5 gap-4"
           style={{
-            top: 'calc(env(safe-area-inset-top,0px) + 54px)',
+            top: 'calc(env(safe-area-inset-top,0px) + 52px)',
             background: '#1a1a1a',
             borderBottom: '1px solid var(--border)',
           }}>
