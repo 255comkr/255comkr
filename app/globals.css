@@ -26,7 +26,10 @@
 
   /* 폰트 패밀리 */
   --font-base: 'Pretendard Variable', 'Pretendard',
-               -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+               -apple-system, BlinkMacSystemFont,
+               'Apple SD Gothic Neo', 'Noto Sans KR',
+               'Malgun Gothic', '맑은 고딕',
+               system-ui, sans-serif;
   --font-logo: 'Orbitron', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
