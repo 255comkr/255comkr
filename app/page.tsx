@@ -44,7 +44,7 @@ export default function HomePage() {
         {/* HERO */}
         <section className="hero">
           <div className="hero-glow" />
-          <div className="relative z-10 max-w-2xl mx-auto w-full">
+          <div className="relative z-10 max-w-4xl mx-auto w-full">
 
             <div className="hero-tag">
               <div className="hero-tag-dot live-dot" />
