@@ -201,7 +201,7 @@ export default function QuotePage() {
             <p className="t-h4 mb-2">💡 더 정확한 견적이 필요하신가요?</p>
             <p className="t-caption mb-4" style={{ color: 'var(--muted2)' }}>
               위 구성은 2026년 3월 인터넷 최저가 기준입니다.<br />
-              예산과 용도에 맞는 맞춤 견적은 직접 문의해 주세요.
+              중고PC 견적 · 예산과 용도 맞춤 견적은 직접 문의해 주세요.<br /> 
             </p>
             <a href="http://pf.kakao.com/_xeDNxhX" target="_blank" rel="noopener"
               className="btn btn-primary">
