@@ -239,7 +239,7 @@ export default function QuotePage() {
                 <a href="http://pf.kakao.com/_xeDNxhX"
                   target="_blank" rel="noopener"
                   className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-black text-white whitespace-nowrap"
-                  style={ background: b.ctaBg }>
+                  style={{ background: b.ctaBg }}>
                   문의하기
                 </a>
               </div>
@@ -257,7 +257,7 @@ export default function QuotePage() {
             <div className="flex gap-3 justify-center flex-wrap">
               <a href="http://pf.kakao.com/_xeDNxhX" target="_blank" rel="noopener"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white"
-                style={ background: 'var(--accent)' }>
+                style={{ background: 'var(--accent)' }}>
                 문의하기
               </a>
             </div>

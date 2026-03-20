@@ -132,7 +132,7 @@ export default function HomePage() {
               <a href="http://pf.kakao.com/_xeDNxhX"
                 target="_blank" rel="noopener"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white transition-all"
-                style={ background: 'var(--accent)' }>
+                style={{ background: 'var(--accent)' }}>
                 문의하기
               </a>
               <Link href="/quote"
@@ -266,7 +266,7 @@ export default function HomePage() {
             <div className="flex gap-3 justify-center flex-wrap">
               <a href="http://pf.kakao.com/_xeDNxhX" target="_blank" rel="noopener"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white"
-                style={ background: 'var(--accent)' }>
+                style={{ background: 'var(--accent)' }}>
                 문의하기
               </a>
             </div>
