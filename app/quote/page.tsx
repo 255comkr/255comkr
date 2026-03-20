@@ -268,6 +268,27 @@ export default function QuotePage() {
         <Footer hideLinks />
 
       </main>
+      
+      {/* 플로팅 버튼 — 상담사 아이콘 */}
+      <a href="http://pf.kakao.com/_xeDNxhX"
+        target="_blank" rel="noopener"
+        className="fixed z-50 flex items-center justify-center rounded-full"
+        style={{
+          bottom: 'calc(env(safe-area-inset-bottom,0px) + 24px)',
+          right: '20px',
+          width: '52px',
+          height: '52px',
+          background: 'var(--accent)',
+          boxShadow: '0 4px 20px rgba(184,152,42,0.4)',
+        }}>
+        {/* 상담사 아이콘 SVG */}
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.51 15.58 3.38 17.06L2.08 21.92L6.94 20.62C8.42 21.49 10.15 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" fill="white" opacity="0.95"/>
+          <circle cx="8.5" cy="12" r="1.2" fill="var(--accent)"/>
+          <circle cx="12" cy="12" r="1.2" fill="var(--accent)"/>
+          <circle cx="15.5" cy="12" r="1.2" fill="var(--accent)"/>
+        </svg>
+      </a>
     </>
   )
 }
