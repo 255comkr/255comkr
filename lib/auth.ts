@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server'
 import { createHash } from 'crypto'
-import { SESSIONS } from '@/app/api/admin/login/route'
+import { SESSIONS } from '@/lib/sessions'
 
 export function verifySession(req: NextRequest): boolean {
   const token = req.cookies.get('255admin_token')?.value

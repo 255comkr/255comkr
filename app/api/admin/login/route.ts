@@ -1,3 +1,4 @@
+import { SESSIONS } from '@/lib/sessions'
 import { NextRequest, NextResponse } from 'next/server'
 import { createHash, randomBytes, timingSafeEqual } from 'crypto'
 
@@ -32,7 +33,6 @@ function safeCompare(a: string, b: string): boolean {
 }
 
 // ── 세션 저장 (해시 → 만료 ms)
-export const SESSIONS = new Map<string, number>()
 
 export async function POST(req: NextRequest) {
   // Content-Type 검증

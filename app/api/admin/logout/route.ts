@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createHash } from 'crypto'
-import { SESSIONS } from '@/app/api/admin/login/route'
+import { SESSIONS } from '@/lib/sessions'
 
 export async function POST(req: NextRequest) {
   // 세션 서버에서도 삭제
