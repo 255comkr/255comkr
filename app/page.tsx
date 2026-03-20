@@ -150,7 +150,7 @@ export default function HomePage() {
                 ['10,000+', '누적 조립 건수'],
                 ['8년', '용산 조립 경력'],
                 ['4.9 / 5', '고객 만족도'],
-                ['당일', '(부품배송완료시) 조립 완료'],
+                ['부품 배송완료시 당일', '조립 완료'],
               ].map(([n, l]) => (
                 <div key={l}>
                   <div className="text-xl font-bold mb-0.5"
@@ -286,7 +286,7 @@ export default function HomePage() {
 
             {/* 스탯 */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
-              {[['10,000+','누적 조립'],['4.9★','평균 평점'],['98%','재방문율'],['부품 배송완료시 당일','조립 완료']].map(([n, l]) => (
+              {[['10,000+','누적 조립'],['4.9★','평균 평점'],['98%','재방문율'],['당일','조립 완료(부품배송완료시)']].map(([n, l]) => (
                 <div key={l} className="p-4 rounded-xl text-center"
                   style={{ background: 'var(--s1)', border: '1px solid var(--border)' }}>
                   <div className="text-lg font-bold mb-1"
