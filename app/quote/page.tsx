@@ -135,14 +135,14 @@ export default function QuotePage() {
         </section>
 
         {/* 섹션 라벨 */}
-        <div className="px-6 max-w-3xl mx-auto mb-5">
+        <div className="px-6 max-w-4xl mx-auto mb-5">
           <p className="text-xs font-bold uppercase" style={{ color: 'var(--muted)', letterSpacing: '2.5px' }}>
             견적 구성 · 2026 Mar
           </p>
         </div>
 
         {/* ── CARDS ── */}
-        <div className="px-4 pb-24 max-w-3xl mx-auto flex flex-col gap-5">
+        <div className="px-4 pb-24 max-w-4xl mx-auto flex flex-col gap-5">
           {BUILDS.map((b) => (
             <div key={b.num} className="rounded-2xl overflow-hidden"
               style={{ background: 'var(--s1)', border: `1px solid ${b.border}` }}>
