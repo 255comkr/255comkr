@@ -26,7 +26,7 @@ export function Footer({ hideLinks = false }: { hideLinks?: boolean }) {
         </div>
         <div className="footer-bottom">
           <span>상호: 이오오컴 (255COM)</span>
-          <span>© 2025 255COM. All rights reserved.</span>
+          <span>© 2026 255COM. All rights reserved.</span>
           <a href="/admin" style={{ color: 'var(--bg)', fontSize: '10px', userSelect: 'none' }}>255</a>
         </div>
       </div>
@@ -106,8 +106,9 @@ export default function HomePage() {
             <div className="flex gap-8 flex-wrap pt-8 border-top">
               {[
                 ['10,000+', '누적 조립 건수'],
+                ['8년', '용산 조립 경력'],
                 ['4.9 / 5', '고객 만족도'],
-                ['당일',    '(부품배송완료시) 조립 완료'],
+                ['당일',    '조립 완료(부품배송완료시) '],
               ].map(([n, l]) => (
                 <div key={l}>
                   <div className="stat-num">{n}</div>
@@ -134,13 +135,13 @@ export default function HomePage() {
               {[
                 { label:'PC 판매',  icon:'○', title:'맞춤 PC 조립 · 판매',
                   desc:'용도와 예산에 맞는 최적의 부품을 선정하여 직접 조립해 드립니다.',
-                  items:['게이밍 PC','영상편집 · 렌더링 워크스테이션','소형 사무용 미니PC'] },
+                  items:['소형 사무용 미니PC','게이밍 PC','영상편집 · 렌더링 워크스테이션'] },
                 { label:'수리 · AS', icon:'◎', title:'PC 수리 · 부품 교체',
                   desc:'부팅 불량, 블루스크린, 소음, 과열 등 모든 PC 트러블슈팅을 처리합니다.',
                   items:['하드웨어 진단 · 교체','OS 재설치 · 최적화','데이터 백업 · 복구'] },
                 { label:'견적 상담', icon:'●', title:'무료 PC 견적 상담',
                   desc:'예산과 용도를 알려주시면 최적의 부품 구성을 무료로 제안해드립니다.',
-                  items:['카카오톡 상담','컴퓨존 기준 실시간 가격','신품 정품만 취급'] },
+                  items:['카카오톡 상담','컴퓨존, 다나와 실시간 가격 기준','정품 취급'] },
               ].map(s => (
                 <div key={s.title} className="svc-card">
                   <div className="flex items-center justify-between mb-4">
@@ -215,9 +216,9 @@ export default function HomePage() {
 
             <div className="grid sm:grid-cols-3 gap-4">
               {[
-                { e:'🎮', name:'이*준', date:'2025년 2월', tag:'게이밍 PC',  text:'예산 230만원으로 9600X + RTX 5060 구성으로 딱 맞게 맞춰주셨어요!' },
-                { e:'🔧', name:'박*영', date:'2025년 1월', tag:'수리·AS',   text:'갑자기 PC가 안 켜져서 당일 연락했는데 당일 수리 완료해 주셨어요!' },
-                { e:'🎬', name:'김*수', date:'2025년 3월', tag:'견적 상담', text:'영상편집용 PC 견적에서 예산 내 최선의 구성을 제안해 주셨어요.' },
+                { e:'🎮', name:'이*준', date:'2026년 3월', tag:'게이밍 PC',  text:'예산 250만원으로 7500X3D + RTX 5060 구성으로 딱 맞게 맞춰주셨어요!' },
+                { e:'🔧', name:'박*영', date:'2026년 2월', tag:'수리·AS',   text:'갑자기 PC가 안 켜져서 당일 연락했는데 당일 수리 완료해 주셨어요!' },
+                { e:'🎬', name:'김*수', date:'2026년 1월', tag:'견적 상담', text:'영상편집용 PC 견적에서 예산 내 최선의 구성을 제안해 주셨어요.' },
               ].map(r => (
                 <div key={r.name} className="review-card">
                   <div className="review-stars">★★★★★</div>
@@ -255,7 +256,7 @@ export default function HomePage() {
                   <div className="flex flex-col gap-2 mt-1">
                     {[
                       { d:'월 — 금', t:'10:00 – 19:00', open:true  },
-                      { d:'토요일',  t:'10:00 – 17:00', open:false },
+                      { d:'토요일',  t:'10:00 – 15:00', open:false },
                       { d:'일요일',  t:'휴무',           open:false },
                     ].map(h => (
                       <div key={h.d} className={`hours-row${h.open ? ' open' : ''}`}>
