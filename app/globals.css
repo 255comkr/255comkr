@@ -3,63 +3,84 @@
 @tailwind utilities;
 
 :root {
-  --bg:      #0a0c10;
-  --s1:      #0f1318;
-  --s2:      #141920;
-  --s3:      #1a2030;
-  --border:  #1e2535;
-  --border2: #252e42;
-  --accent:  #3b82f6;
-  --accent2: #60a5fa;
-  --orange:  #f97316;
-  --green:   #22c55e;
-  --red-txt: #ffcccc;
-  --red-glow:#ff2020;
-  --text:    #e2e8f0;
-  --muted:   #64748b;
-  --muted2:  #94a3b8;
+  --bg:      #1a1a1a;
+  --s1:      #212121;
+  --s2:      #2a2a2a;
+  --s3:      #333333;
+  --border:  rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.13);
+  --text:    #ececec;
+  --text2:   #c8c8c8;
+  --muted:   #888888;
+  --muted2:  #aaaaaa;
+  --accent:  #b8982a;
+  --accent2: #cead42;
+  --accent3: #dfc96a;
+  --green:   #6b9e7e;
+  --blue:    #6e93b5;
+  --purple:  #9b8ab5;
+
+  /* ── 폰트 변수 ── */
+  --font-base:  'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-logo:  'Orbitron', sans-serif;   /* 255COM 로고 전용 */
+  --font-mono:  'JetBrains Mono', monospace; /* 숫자·가격·코드 */
 }
 
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: var(--font-base);
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all; /* 한글 줄바꿈 자연스럽게 */
 }
 
-/* 255COM 로고 글로우 */
+/* ── 로고 — Orbitron (255COM 표기 시 항상 사용) ── */
 .logo-255 {
-  font-family: 'Orbitron', sans-serif;
-  color: var(--red-txt);
-  text-shadow: 0 0 5px #ff8888, 0 0 10px var(--red-glow);
+  font-family: var(--font-logo);
+  color: var(--text);
+  letter-spacing: -1px;
+  font-weight: 900;
 }
 .logo-com {
-  color: #fff;
-  text-shadow: 0 0 3px #fff, 0 0 6px #ffe600;
+  font-family: var(--font-logo);
+  color: var(--accent);
+  letter-spacing: -1px;
+  font-weight: 900;
 }
 
-/* 사인파 애니메이션 */
-@keyframes livepulse {
-  0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
-  50%      { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+/* ── 섹션 제목 — Pretendard 굵게 ── */
+.sec-heading {
+  font-family: var(--font-base);
+  font-weight: 700;
+  letter-spacing: -0.3px;
 }
-.live-dot { animation: livepulse 2s infinite; }
 
+/* ── 공통 애니메이션 ── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.fade-up { animation: fadeUp 0.4s ease both; }
+.fade-up { animation: fadeUp 0.45s ease both; }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 .spin { animation: spin 0.7s linear infinite; display: inline-block; }
 
-/* 스크롤바 숨김 */
+@keyframes pulse-soft {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+.live-dot { animation: pulse-soft 2.5s ease-in-out infinite; }
+
+/* ── 스크롤바 ── */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }

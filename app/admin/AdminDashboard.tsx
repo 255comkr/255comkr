@@ -2,10 +2,8 @@
 
 import React, { useState, useEffect, useCallback } from 'react'
 import type { PriceData, Category } from '@/lib/types'
-import Logo255 from '@/components/Logo255'
 
-const ADMIN_PW = '255com2025'   // ← 여기서 비밀번호 변경
-const SESSION_KEY = '255admin_ok'
+// 인증 상태는 서버 httpOnly 쿠키 기반 — 클라이언트 저장소 미사용
 
 const won = (n: number) => '₩' + n.toLocaleString()
 const man = (n: number) => '₩' + (n / 10000).toFixed(1) + '만'
@@ -17,8 +15,10 @@ const rankClass = (i: number) =>
 
 export default function AdminDashboard() {
   const [authed, setAuthed]       = useState(false)
+  const [checking, setChecking]   = useState(true)   // 초기 세션 확인 중
   const [pw, setPw]               = useState('')
   const [pwErr, setPwErr]         = useState('')
+  const [remaining, setRemaining] = useState<number | null>(null)
   const [data, setData]           = useState<PriceData | null>(null)
   const [activeCat, setActiveCat] = useState('all')
   const [query, setQuery]         = useState('')
@@ -27,11 +27,12 @@ export default function AdminDashboard() {
   const [toastMsg, setToastMsg]   = useState('')
   const [time, setTime]           = useState('')
 
-  // 세션 복원
+  // 서버 세션 확인 (페이지 로드 시)
   useEffect(() => {
-    if (sessionStorage.getItem(SESSION_KEY) === '1') {
-      setAuthed(true)
-    }
+    fetch('/api/admin/check')
+      .then(r => r.json())
+      .then(d => { if (d.ok) setAuthed(true) })
+      .finally(() => setChecking(false))
   }, [])
 
   // 시계
@@ -56,19 +57,37 @@ export default function AdminDashboard() {
     if (authed) loadData()
   }, [authed, loadData])
 
-  const doLogin = () => {
-    if (pw === ADMIN_PW) {
-      sessionStorage.setItem(SESSION_KEY, '1')
-      setAuthed(true)
-    } else {
-      setPwErr('❌ 비밀번호가 틀렸습니다.')
-      setPw('')
+  const doLogin = async () => {
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pw }),
+      })
+      const data = await res.json()
+      if (res.ok && data.ok) {
+        setAuthed(true)
+        setRemaining(null)
+      } else if (res.status === 429) {
+        setPwErr('❌ 너무 많은 시도 — 30분 후 재시도하세요.')
+      } else {
+        setRemaining(data.remaining ?? null)
+        setPwErr(
+          data.remaining != null && data.remaining <= 2
+            ? `❌ 틀렸습니다. 남은 시도: ${data.remaining}회`
+            : '❌ 비밀번호가 틀렸습니다.'
+        )
+        setPw('')
+        setTimeout(() => setPwErr(''), 4000)
+      }
+    } catch {
+      setPwErr('❌ 서버 오류가 발생했습니다.')
       setTimeout(() => setPwErr(''), 3000)
     }
   }
 
-  const doLogout = () => {
-    sessionStorage.removeItem(SESSION_KEY)
+  const doLogout = async () => {
+    await fetch('/api/admin/logout', { method: 'POST' })
     setAuthed(false)
     setData(null)
   }
@@ -104,13 +123,25 @@ export default function AdminDashboard() {
   const catKeys = Object.keys(cats)
   const filteredKeys = activeCat === 'all' ? catKeys : catKeys.filter(k => k === activeCat)
 
+  // ── 초기 세션 확인 중
+  if (checking) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--bg)' }}>
+        <div className="w-4 h-4 rounded-full" style={{ background: 'var(--accent)', animation: 'pulse-soft 1s infinite' }} />
+      </div>
+    )
+  }
+
   // ── 로그인 화면 ──
   if (!authed) {
     return (
       <div className="min-h-screen flex items-center justify-center px-6" style={{ background: 'var(--bg)' }}>
         <div className="w-full max-w-sm rounded-3xl p-9 text-center" style={{ background: 'var(--s2)', border: '1px solid rgba(255,255,255,0.1)' }}>
-          <Logo255 size="md" />
-          <p className="text-xs tracking-widest uppercase mt-3 mb-8" style={{ color: 'var(--muted)' }}>관리자 전용</p>
+          <div className="flex justify-center mb-3">
+            <span className="logo-255" style={{ fontSize: '24px' }}>255</span>
+            <span className="logo-com" style={{ fontSize: '24px' }}>COM</span>
+          </div>
+          <p className="text-xs tracking-widest uppercase mb-8" style={{ color: 'var(--muted)' }}>관리자 전용</p>
 
           <label className="block text-xs font-bold text-left mb-1.5 tracking-wide" style={{ color: 'var(--muted2)' }}>비밀번호</label>
           <input
@@ -119,11 +150,12 @@ export default function AdminDashboard() {
             onKeyDown={e => (e as React.KeyboardEvent).key === 'Enter' && doLogin()}
             className="w-full rounded-xl px-4 py-3 text-base outline-none mb-3"
             style={{ background: 'var(--s1)', border: '1px solid var(--border)', color: 'var(--text)', fontFamily: 'inherit' }}
+            maxLength={200}
             autoFocus
           />
           <button onClick={doLogin}
             className="w-full py-3 rounded-xl text-sm font-black text-white mb-2"
-            style={{ background: 'linear-gradient(135deg,var(--accent),#2563eb)' }}>
+            style={{ background: 'var(--accent)' }}>
             로그인
           </button>
           {pwErr && <p className="text-xs text-red-400 mt-2">{pwErr}</p>}
@@ -153,14 +185,14 @@ export default function AdminDashboard() {
         paddingTop: 'calc(env(safe-area-inset-top,0px)+10px)', paddingBottom: '10px',
       }}>
         <div className="max-w-2xl mx-auto flex items-center gap-2.5">
-          <span className="logo-255 text-base font-black flex-shrink-0" style={{ fontFamily: 'Orbitron,sans-serif' }}>255</span>
-          <span className="logo-com text-base font-black flex-shrink-0" style={{ fontFamily: 'Orbitron,sans-serif' }}>COM</span>
+          <span className="logo-255" style={{ fontSize: '16px', fontStyle: 'italic' }}>255</span>
+          <span className="logo-com" style={{ fontSize: '16px', fontStyle: 'italic' }}>COM</span>
           <span className="text-xs font-black px-2 py-0.5 rounded-full flex-shrink-0"
             style={{ background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.3)', color: '#f87171' }}>
             ADMIN
           </span>
           <div className="flex-1 min-w-0">
-            <span className="block text-xs" style={{ fontFamily: 'JetBrains Mono,monospace', color: 'var(--muted)', fontSize: '11px' }}>{time}</span>
+            <span className="block text-xs" style={{ fontFamily: 'var(--font-mono)', color: 'var(--muted)', fontSize: '11px' }}>{time}</span>
             {data?.last_updated && (
               <span className="text-xs" style={{ color: 'var(--muted)', fontSize: '11px' }}>
                 갱신 <b style={{ color: 'var(--green)' }}>{data.last_updated}</b>
@@ -188,7 +220,7 @@ export default function AdminDashboard() {
             { val: catKeys.length ? catKeys.length+'개' : '7개',                                   lbl: '카테고리', color: 'var(--amber)' },
           ].map(h => (
             <div key={h.lbl} className="rounded-2xl p-3.5 text-center fade-up" style={{ background: 'var(--s1)', border: '1px solid var(--border)' }}>
-              <div className="text-lg font-bold leading-none mb-1" style={{ fontFamily: 'JetBrains Mono,monospace', color: h.color }}>{h.val}</div>
+              <div className="text-lg font-bold leading-none mb-1" style={{ fontFamily: 'var(--font-mono)', color: h.color }}>{h.val}</div>
               <div className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--muted)', fontSize: '10px' }}>{h.lbl}</div>
             </div>
           ))}
@@ -205,7 +237,7 @@ export default function AdminDashboard() {
                   style={{ animationDelay: `${i * 0.04}s`, minWidth: 100, background: 'var(--s1)', border: `1px solid var(--border)`, borderLeft: `3px solid ${cat.color}` }}>
                   <div className="text-sm mb-0.5">{cat.icon}</div>
                   <div className="text-xs font-bold uppercase tracking-wide mb-0.5" style={{ color: 'var(--muted)', fontSize: '10px' }}>{k}</div>
-                  <div className="text-xs font-bold" style={{ fontFamily: 'JetBrains Mono,monospace', color: cat.color }}>{man(cat.min_price || 0)}</div>
+                  <div className="text-xs font-bold" style={{ fontFamily: 'var(--font-mono)', color: cat.color }}>{man(cat.min_price || 0)}</div>
                 </div>
               )
             })}
@@ -284,7 +316,7 @@ export default function AdminDashboard() {
                     <span className="text-sm font-black">{k}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold" style={{ fontFamily: 'JetBrains Mono,monospace', color: 'var(--green)' }}>{man(cat.min_price || 0)}</span>
+                    <span className="text-xs font-bold" style={{ fontFamily: 'var(--font-mono)', color: 'var(--green)' }}>{man(cat.min_price || 0)}</span>
                     <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'var(--s2)', border: '1px solid var(--border)', color: 'var(--muted)' }}>{prods.length}개</span>
                   </div>
                 </div>
@@ -299,7 +331,7 @@ export default function AdminDashboard() {
                       onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.background = '')}>
                       {/* 순위 */}
                       <div className={`w-6 h-6 rounded-lg flex items-center justify-center text-xs font-black flex-shrink-0 ${rankClass(i)}`}
-                        style={{ fontFamily: 'JetBrains Mono,monospace' }}>{i + 1}</div>
+                        style={{ fontFamily: 'var(--font-mono)' }}>{i + 1}</div>
                       {/* 상품명 */}
                       <div className="flex-1 min-w-0 text-xs font-medium leading-snug"
                         style={{ color: 'var(--text)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', wordBreak: 'keep-all' }}>
@@ -307,7 +339,7 @@ export default function AdminDashboard() {
                       </div>
                       {/* 가격 */}
                       <div className="text-right flex-shrink-0">
-                        <div className="text-xs font-bold" style={{ fontFamily: 'JetBrains Mono,monospace', color: 'var(--accent2)' }}>{won(p.price)}</div>
+                        <div className="text-xs font-bold" style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent2)' }}>{won(p.price)}</div>
                         <div className="text-xs mt-0.5" style={{ color: 'var(--muted)', fontSize: '10px' }}>컴퓨존 ↗</div>
                       </div>
                     </a>
