@@ -4,7 +4,7 @@ import Logo from '@/components/Logo'
 import Link from 'next/link'
 
 /* ── 공통 Footer 컴포넌트 ── */
-export function Footer() {
+export function Footer({ hideLinks = false }: { hideLinks?: boolean }) {
   return (
     <footer className="px-6 pt-10 pb-16"
       style={{ background: 'var(--bg)', borderTop: '1px solid var(--border)' }}>
@@ -14,17 +14,19 @@ export function Footer() {
             <Logo size={17} className="mb-2" />
             <p className="text-xs" style={{ color: 'var(--muted)', lineHeight: 1.7 }}>
               PC 판매 · 수리 · 견적 전문<br />
-              포란재로 36 · 0504-2530-4083
+              포란재로 36 · tel.0504-2530-4083
             </p>
           </div>
-          <div className="flex gap-6 flex-wrap items-start pt-1">
-            {[['서비스','/#services'],['후기','/#reviews'],['추천 견적','/quote'],['오시는 길','/#contact']].map(([l, h]) => (
-              <Link key={l} href={h} className="text-xs transition-colors"
-                style={{ color: 'var(--muted)' }}>
-                {l}
-              </Link>
-            ))}
-          </div>
+          {!hideLinks && (
+            <div className="flex gap-6 flex-wrap items-start pt-1">
+              {[['서비스','/#services'],['후기','/#reviews'],['추천 견적','/quote'],['오시는 길','/#contact']].map(([l, h]) => (
+                <Link key={l} href={h} className="text-xs transition-colors"
+                  style={{ color: 'var(--muted)' }}>
+                  {l}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
         <div className="pt-6 flex flex-col gap-1" style={{ borderTop: '1px solid var(--border)', fontSize: '11px', color: 'var(--muted)' }}>
           <span>상호: 이오오컴 (255COM)</span>
