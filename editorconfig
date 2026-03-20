@@ -1,0 +1,36 @@
+# EditorConfig: VS Code, WebStorm, Sublime 등 모든 에디터에서 자동 적용
+# https://editorconfig.org
+root = true
+
+# 기본값 — 모든 파일
+[*]
+charset             = utf-8
+end_of_line         = lf
+indent_style        = space
+indent_size         = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# TypeScript / JavaScript / JSX
+[*.{ts,tsx,js,jsx}]
+indent_size = 2
+
+# JSON
+[*.json]
+indent_size = 2
+
+# CSS
+[*.css]
+indent_size = 2
+
+# Python (크롤러)
+[*.py]
+indent_size = 4
+
+# Markdown — 후행 공백 유지 (줄바꿈에 사용)
+[*.md]
+trim_trailing_whitespace = false
+
+# Windows 배치파일 — CRLF 유지
+[*.bat]
+end_of_line = crlf
