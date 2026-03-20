@@ -54,7 +54,7 @@ export default function HomePage() {
           <div className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 20%, rgba(201,100,66,0.06), transparent 70%)' }} />
 
-          <div className="relative z-10 max-w-2xl mx-auto w-full">
+          <div className="relative z-10 max-w-3xl mx-auto w-full">
 
             {/* 태그라인 */}
             <div className="flex items-center gap-2 mb-8">
