@@ -6,7 +6,7 @@ import { Footer } from '@/app/page'
 
 export const metadata: Metadata = {
   title: '255COM 추천 견적',
-  description: '2026년 3월 최신 견적 · 사무용 / FHD 고사양 게이밍 / 전문가 작업용',
+  description: '2026년 3월 최신 견적 · 사무용 / 고사양 게이밍 / 전문가 작업용',
 }
 
 const BUILDS = [
@@ -119,7 +119,7 @@ export default function QuotePage() {
               THREE BUILDS
             </p>
             <p className="text-sm leading-relaxed mb-8" style={{ color: 'var(--muted2)', maxWidth: 480 }}>
-              사무용 · FHD 고사양 게이밍 · 전문가 작업용<br />
+              사무용 · 고사양 게이밍 · 전문가 작업용<br />
               목적과 예산에 맞는 최적화된 구성을 제안합니다<br />
               가격은 인터넷 최저가 합산 · 케이스는 구매자 선택에 따라 금액 변동됨<br />
               조립비 4~5만원 및 택배비 별도
