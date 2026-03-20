@@ -27,7 +27,6 @@ export function Footer({ hideLinks = false }: { hideLinks?: boolean }) {
         <div className="footer-bottom">
           <span>상호: 이오오컴 (255COM)</span>
           <span>© 2026 255COM. All rights reserved.</span>
-          <a href="/admin" style={{ color: 'var(--bg)', fontSize: '10px', userSelect: 'none' }}>255</a>
         </div>
       </div>
     </footer>
