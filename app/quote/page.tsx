@@ -98,7 +98,7 @@ export default function QuotePage() {
         {/* HERO */}
         <div className="quote-hero">
           <div className="quote-hero-glow" />
-          <div className="relative z-10 max-w-3xl mx-auto">
+          <div className="relative z-10 max-w-4xl mx-auto">
             <p className="t-eyebrow mb-4">2026년 3월 최신 견적 · 인터넷 최저가 기준</p>
             <h1 className="quote-h1">추천 견적</h1>
             <p className="quote-sub">THREE BUILDS</p>
