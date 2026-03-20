@@ -1,12 +1,14 @@
 'use client'
 import React from 'react'
-
 import { useState } from 'react'
 import Link from 'next/link'
 import Logo from './Logo'
+import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const isQuote  = pathname === '/quote'
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -32,26 +34,38 @@ export default function Navbar() {
 
           {/* 데스크톱 */}
           <div className="hidden sm:flex items-center gap-7">
-            {[['서비스','services'],['실적','reviews'],['오시는 길','contact']].map(([l, id]) => (
-              <button key={id} onClick={() => scrollTo(id)}
-                className="text-xs font-medium transition-colors"
+            {!isQuote && (
+              <>
+                {[['서비스','services'],['실적','reviews'],['오시는 길','contact']].map(([l, id]) => (
+                  <button key={id} onClick={() => scrollTo(id)}
+                    className="text-xs font-medium transition-colors"
+                    style={{ color: 'var(--muted)' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--text)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}>
+                    {l}
+                  </button>
+                ))}
+                <Link href="/quote" className="text-xs font-medium transition-colors"
+                  style={{ color: 'var(--muted)' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--text)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}>
+                  추천 견적
+                </Link>
+              </>
+            )}
+            {isQuote && (
+              <Link href="/" className="text-xs font-medium transition-colors"
                 style={{ color: 'var(--muted)' }}
                 onMouseEnter={e => (e.currentTarget.style.color = 'var(--text)')}
                 onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}>
-                {l}
-              </button>
-            ))}
-            <Link href="/quote" className="text-xs font-medium transition-colors"
-              style={{ color: 'var(--muted)' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--text)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}>
-              추천 견적
-            </Link>
-            <button onClick={() => scrollTo('contact')}
+                ← 홈으로
+              </Link>
+            )}
+            <a href="http://pf.kakao.com/_xeDNxhX" target="_blank" rel="noopener"
               className="text-xs font-semibold px-4 py-2 rounded-lg"
               style={{ background: 'var(--accent)', color: '#fff' }}>
               문의하기
-            </button>
+            </a>
           </div>
 
           {/* 햄버거 */}
@@ -72,21 +86,31 @@ export default function Navbar() {
             background: '#1a1a1a',
             borderBottom: '1px solid var(--border)',
           }}>
-          {[['서비스','services'],['실적','reviews'],['오시는 길','contact']].map(([l, id]) => (
-            <button key={id} onClick={() => scrollTo(id)}
-              className="text-sm font-medium text-left" style={{ color: 'var(--text2)' }}>
-              {l}
-            </button>
-          ))}
-          <Link href="/quote" onClick={() => setMenuOpen(false)}
-            className="text-sm font-medium" style={{ color: 'var(--text2)' }}>
-            추천 견적
-          </Link>
-          <button onClick={() => scrollTo('contact')}
-            className="text-sm font-semibold py-2.5 rounded-lg"
+          {!isQuote && (
+            <>
+              {[['서비스','services'],['실적','reviews'],['오시는 길','contact']].map(([l, id]) => (
+                <button key={id} onClick={() => scrollTo(id)}
+                  className="text-sm font-medium text-left" style={{ color: 'var(--text2)' }}>
+                  {l}
+                </button>
+              ))}
+              <Link href="/quote" onClick={() => setMenuOpen(false)}
+                className="text-sm font-medium" style={{ color: 'var(--text2)' }}>
+                추천 견적
+              </Link>
+            </>
+          )}
+          {isQuote && (
+            <Link href="/" onClick={() => setMenuOpen(false)}
+              className="text-sm font-medium" style={{ color: 'var(--text2)' }}>
+              ← 홈으로
+            </Link>
+          )}
+          <a href="http://pf.kakao.com/_xeDNxhX" target="_blank" rel="noopener"
+            className="text-sm font-semibold py-2.5 rounded-lg text-center"
             style={{ background: 'var(--accent)', color: '#fff' }}>
             문의하기
-          </button>
+          </a>
         </div>
       )}
     </>
