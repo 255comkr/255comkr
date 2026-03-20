@@ -337,10 +337,7 @@ export default function HomePage() {
                     style={{ background: 'var(--s2)', border: '1px solid var(--border)' }}>
                     <div>
                       <div className="text-xs font-medium mb-1.5" style={{ color: 'var(--muted)', letterSpacing: '0.5px' }}>{c.label}</div>
-                      {c.href
-                        ? <a href={c.href} className="text-sm font-medium" style={{ color: 'var(--accent)' }}>{c.value}</a>
-                        : <div className="text-sm font-medium" style={{ color: 'var(--text)' }}>{c.value}</div>
-                      }
+                      <div className="text-sm font-medium" style={{ color: 'var(--text)' }}>{c.value}</div>
                       {c.sub && <div className="text-xs mt-1" style={{ color: 'var(--muted)' }}>{c.sub}</div>}
                     </div>
                   </div>
