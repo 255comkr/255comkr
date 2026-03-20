@@ -148,6 +148,7 @@ export default function HomePage() {
             <div className="flex gap-8 flex-wrap mt-14 pt-8" style={{ borderTop: '1px solid var(--border)' }}>
               {[
                 ['10,000+', '누적 조립 건수'],
+                ['8년', '용산 조립 경력'],
                 ['4.9 / 5', '고객 만족도'],
                 ['당일', '(부품배송완료시) 조립 완료'],
               ].map(([n, l]) => (
@@ -285,7 +286,7 @@ export default function HomePage() {
 
             {/* 스탯 */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
-              {[['10,000+','누적 조립'],['4.9★','평균 평점'],['98%','재방문율'],['당일','(부품배송완료시) 조립 완료']].map(([n, l]) => (
+              {[['10,000+','누적 조립'],['4.9★','평균 평점'],['98%','재방문율'],['부품 배송완료시 당일','조립 완료']].map(([n, l]) => (
                 <div key={l} className="p-4 rounded-xl text-center"
                   style={{ background: 'var(--s1)', border: '1px solid var(--border)' }}>
                   <div className="text-lg font-bold mb-1"
@@ -297,9 +298,9 @@ export default function HomePage() {
 
             <div className="grid sm:grid-cols-3 gap-4">
               {[
-                { e:'🎮', name:'이*준', date:'2025년 2월', tag:'게이밍 PC',  text:'예산 230만원으로 9600X + RTX 5060 구성으로 딱 맞게 맞춰주셨어요!' },
-                { e:'🔧', name:'박*영', date:'2025년 1월', tag:'수리·AS',   text:'갑자기 PC가 안 켜져서 당일 연락했는데 당일 수리 완료해 주셨어요!' },
-                { e:'🎬', name:'김*수', date:'2025년 3월', tag:'견적 상담', text:'영상편집용 PC 견적에서 예산 내 최선의 구성을 제안해 주셨어요.' },
+                { e:'🎮', name:'이*준', date:'2025년 3월', tag:'게이밍 PC',  text:'예산 250만원으로 7500X3D + RTX 5060 구성으로 딱 맞게 맞춰주셨어요!' },
+                { e:'🔧', name:'박*영', date:'2025년 2월', tag:'수리·AS',   text:'갑자기 PC가 안 켜져서 당일 연락했는데 당일 수리 완료해 주셨어요!' },
+                { e:'🎬', name:'김*수', date:'2025년 1월', tag:'견적 상담', text:'영상편집용 PC 견적에서 예산 내 최선의 구성을 제안해 주셨어요.' },
               ].map(r => (
                 <div key={r.name} className="p-5 rounded-2xl"
                   style={{ background: 'var(--s1)', border: '1px solid var(--border)' }}>
