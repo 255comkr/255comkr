@@ -185,7 +185,7 @@ export default function HomePage() {
                   label: 'PC 판매', icon: '○',
                   title: '맞춤 PC 조립 · 판매',
                   desc: '용도와 예산에 맞는 최적의 부품을 선정하여 직접 조립해 드립니다.',
-                  items: ['게이밍 PC', '영상편집 · 렌더링 워크스테이션', '소형 사무용 미니PC'],
+                  items: ['소형 사무용 미니PC', '게이밍 PC', '영상편집 · 렌더링 워크스테이션'],
                 },
                 {
                   label: '수리 · AS', icon: '◎',
@@ -197,7 +197,7 @@ export default function HomePage() {
                   label: '견적 상담', icon: '●',
                   title: '무료 PC 견적 상담',
                   desc: '예산과 용도를 알려주시면 최적의 부품 구성을 무료로 제안해드립니다.',
-                  items: ['카카오톡 상담', '컴퓨존 기준 실시간 가격', '신품 정품만 취급'],
+                  items: ['카카오톡 상담', '컴퓨존, 다나와 실시간 가격 기준', '정품 취급'],
                 },
               ].map((s, i) => (
                 <div key={s.title}
