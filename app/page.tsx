@@ -1,3 +1,4 @@
+import React from 'react'
 import Navbar from '@/components/Navbar'
 import Logo from '@/components/Logo'
 import Link from 'next/link'
@@ -63,12 +64,11 @@ export default function HomePage() {
 
             {/* 로고 대형 — 모바일 가로 70% 기준 */}
             <div className="mb-6">
-              <div className="flex items-baseline" style={{ gap: 'max(3px, calc(70vw * 0.08 / 5.3))' }}>
+              <div className="flex items-baseline" style={{ gap: 'clamp(3px, 1.06vw, 7px)' }}>
                 <svg
                   viewBox="60 30 281 241"
                   style={{
-                    height: 'calc(70vw * 0.72 / 5.3)',
-                    maxHeight: '52px',
+                    height: 'clamp(23px, 9.5vw, 52px)',
                     width: 'auto',
                     display: 'block',
                     flexShrink: 0,
@@ -92,7 +92,7 @@ export default function HomePage() {
                 </svg>
                 <span style={{
                   fontFamily: 'var(--font-logo)',
-                  fontSize: 'min(70vw / 5.3, 72px)',
+                  fontSize: 'clamp(32px, 13.2vw, 72px)',
                   fontWeight: 900,
                   color: 'var(--text)',
                   letterSpacing: '-0.03em',

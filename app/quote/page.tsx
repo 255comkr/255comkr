@@ -1,3 +1,4 @@
+import React from 'react'
 import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Link from 'next/link'
